@@ -28,9 +28,10 @@ void gameSession(Player *player, const char *saveFile) {
         clearScreen();
         displayCharacter(player);
         printf("\n--- ADVENTURE MENU ---\n");
-        printf("1. Explore Dungeon (Battle)\n");
-        printf("2. Save Progress\n");
-        printf("3. Return to Main Menu\n");
+        printf("1. Explore Dungeon (Battle on Floor %d)\n", player->currentFloor);
+        printf("2. Descend to Next Floor (Floor %d)\n", player->currentFloor + 1);
+        printf("3. Save Progress\n");
+        printf("4. Return to Main Menu\n");
         printf("Enter your choice: ");
         fflush(stdout);
 
@@ -58,11 +59,17 @@ void gameSession(Player *player, const char *saveFile) {
                 break;
             }
             case 2:
+                advanceFloor(player);
+                saveGame(player, saveFile);
+                printf("\nProgress saved on Floor %d!\n", player->currentFloor);
+                waitForEnter();
+                break;
+            case 3:
                 saveGame(player, saveFile);
                 printf("\nGame saved to '%s'!\n", saveFile);
                 waitForEnter();
                 break;
-            case 3:
+            case 4:
                 return;
             default:
                 printf("\nInvalid choice!\n");

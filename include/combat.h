@@ -5,5 +5,6 @@
 
 int startCombat(Player *p, Enemy *e);
 Enemy generateEnemy(int floor);
+void advanceFloor(Player *p);
 
 #endif
