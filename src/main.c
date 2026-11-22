@@ -59,11 +59,17 @@ void gameSession(Player *player, const char *saveFile) {
                 break;
             }
             case 2:
+                advanceFloor(player);
+                saveGame(player, saveFile);
+                printf("\nProgress saved on Floor %d!\n", player->currentFloor);
+                waitForEnter();
+                break;
+            case 3:
                 saveGame(player, saveFile);
                 printf("\nGame saved to '%s'!\n", saveFile);
                 waitForEnter();
                 break;
-            case 3:
+            case 4:
                 return;
             default:
                 printf("\nInvalid choice!\n");
